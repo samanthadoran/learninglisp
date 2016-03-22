@@ -3,8 +3,7 @@
 (defpackage #:my-new-package
   (:nicknames #:newpack)
   (:use :cl :cl-user)
-  (:export #:mad-adder)
-)
+  (:export #:mad-adder))
 
 (in-package :my-new-package)
 
@@ -12,5 +11,4 @@
 
 (defun mad-adder (n &rest rest)
   "An addittion function for MY-NEW-PACKAGE."
-  (apply #'+ n rest)
-)
+  (apply #'+ n rest))
