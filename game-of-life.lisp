@@ -3,7 +3,7 @@
 (defpackage #:my-new-package
   (:nicknames #:newpack)
   (:use :cl :cl-user)
-  (:export #:sum-nine #:make-field #:randomize-field #:step-field))
+  (:export #:sum-nine #:make-field #:randomize-field #:step-field #:print-field))
 
 (in-package :my-new-package)
 
@@ -31,7 +31,7 @@
       (setf (aref field 0 y x) (if (< (random 2) 1) T nil)))))
 
 (defun step-field(field)
-  "Step field future to field past"
+  "Do some logic and then step the future state to current."
   (dotimes (y (array-dimension field 1))
     (dotimes (x (array-dimension field 2))
         (setf (aref field 1 y x)
@@ -44,3 +44,12 @@
   (dotimes (y (array-dimension field 1))
     (dotimes (x (array-dimension field 2))
         (setf (aref field 0 y x) (aref field 1 y x)))))
+
+(defun print-field(field)
+  "Print a pretty represenation of the field."
+  (dotimes (y (array-dimension field 1))
+    (progn (dotimes (x (array-dimension field 2))
+      (if (equal (aref field 0 y x) T)
+        (princ "O")
+        (princ "X")))
+      (princ #\linefeed))))
